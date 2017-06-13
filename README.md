@@ -26,3 +26,30 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+================================================================================
+
+## Update npm with nvm (and set default)
+nvm install node
+
+## install angular-cli
+npm install -g @angular/cli
+
+
+## Create new Angular project
+ng new tmdb
+
+## run
+ng serve --host $IP --port $PORT --public $C9_HOSTNAME
+
+## add alias in ~/.bash_aliases
+alias ngs="ng serve --host $IP --port $PORT --public $C9_HOSTNAME"
+
+### reload: source ~/.bash_aliases
+
+-----------------------------
+
+## create service with angular-cli
+ng g service tmdb-api
+
+### add in app.module
