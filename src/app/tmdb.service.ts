@@ -51,6 +51,16 @@ export class TmdbService {
     return Promise.reject(error.message || error);
   }
   
-
+  getMovie(movie_id: number): Promise<any> {
+    let pathMovie = 'movie';
+    // var uri = serviceBase.url + '/movie/' + movie + '?api_key=' + serviceBase.apiKey +
+    //     '&append_to_response=alternative_titles,credits,releases,videos,similar,reviews,images';
+    const url = `${this.apiUrl}${pathMovie}/${movie_id}?api_key=${this.apiKey}`;
+    
+    return this.http.get(url)
+           .toPromise()
+           .then(response => {console.log("full movie", response.json()); return response.json() as Movie})
+           .catch(this.handleError);
+  }
 
 }
