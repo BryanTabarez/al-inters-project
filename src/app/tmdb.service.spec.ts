@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { TmdbApiService } from './tmdb-api.service';
+import { TmdbApiService } from './tmdb.service';
 
 describe('TmdbApiService', () => {
   beforeEach(() => {
