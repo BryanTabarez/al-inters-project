@@ -53,3 +53,10 @@ alias ngs="ng serve --host $IP --port $PORT --public $C9_HOSTNAME"
 ng g service tmdb-api
 
 ### add in app.module
+
+
+* boostrap4
+    `$ npm install --save @ng-bootstrap/ng-bootstrap bootstrap@4.0.0-alpha.6 font-awesome`
+
+* ng-bootstrap
+    `npm install --save @ng-bootstrap/ng-bootstrap`
