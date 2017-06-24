@@ -4,6 +4,7 @@ import { Movie } from '../movie';
 import { MoviesResult } from '../movies-result';
 
 import { TmdbService } from '../tmdb.service';
+import { API_IMG } from '../movie.constants';
 
 @Component({
   selector: 'app-movies',
@@ -13,26 +14,31 @@ import { TmdbService } from '../tmdb.service';
 export class MoviesComponent implements OnInit {
   result: MoviesResult;
   movies: Movie[];
-  selectedMovie: Movie;
-  apiImg: string;
   currentPage: number;
+  apiImg = API_IMG;
   
   constructor(
     private apiService: TmdbService) { }
   
   ngOnInit(): void {
     this.getMovies();
-    this.apiImg = this.apiService.getApiImg();
   }
   
   getMovies(): void {
-    this.apiService.getMovies().then(data => 
+    
+    console.log("VALOR DE moviesComponent", JSON.parse(localStorage.getItem("moviesComponent")));
+    this.apiService.getMovies(undefined, this.currentPage).then(data => 
       {this.result = data; this.movies = data.results; console.log(this.result);});
   }
   
   changePage(page: number): void {
+    localStorage.setItem("moviesComponent", JSON.stringify({page: page}));
     this.currentPage = page;
-    console.log("the page selected is", page);
+    this.getMovies();
+  }
+  
+  changeSort(sort: number): void {
+    console.log("EL NUEVO ORDEN ES", sort);
   }
 
 }
