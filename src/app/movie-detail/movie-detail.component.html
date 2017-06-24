@@ -1,0 +1,46 @@
+<div *ngIf="movie">
+  <h3>{{movie.title}} ({{movie.release_date | date:'yyyy'}}) </h3>
+  <div class="row">
+    <div class="col-3">
+      <a [routerLink]="['/movie', movie.id]" title="{{movie.title}}">
+        <img style="width:100%" src="{{apiImg}}/{{movie.poster_path}}"/>
+      </a>
+    </div>
+    <div class="col-6" style="margin-top:1em;">
+      
+      <dl class="row">
+        <dt class="col-4">Original title:</dt>
+        <dd class="col-8">{{movie.title}}</dd>
+        
+        <dt class="col-4">Release date:</dt>
+        <dd class="col-8">{{movie.release_date | date }}</dd>
+        
+        <dt class="col-4">Genres:</dt>
+        <dd class="col-8" >
+          <span *ngFor="let genre of movie.genres; let isLast=last">
+            {{ genre.name }}{{isLast ? '' : ', '}}
+          </span>
+        </dd>
+        
+        <dt class="col-4">Rating:</dt>
+        <dd class="col-8" style="color:#f39c12;">
+            {{movie.vote_average}}
+            <ngb-rating rate="{{movie.vote_average}}" readonly="true" max="10"></ngb-rating>
+        </dd>
+        
+        <dt class="col-4">Overview: </dt>
+        <dd class="col-12">
+          {{movie.overview}}
+        </dd>
+        
+      </dl>
+      
+    </div>
+    <!--<img style="width:30%" src="{{apiImg}}/{{movie.backdrop_path}}"/>-->
+  </div>
+  
+    
+  
+  <!--<button (click)="goBack()">Back</button>-->
+</div>
+<!--<button (click)="save()">Save</button>-->
