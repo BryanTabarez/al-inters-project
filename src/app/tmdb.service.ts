@@ -7,39 +7,26 @@ import 'rxjs/add/operator/toPromise';
 
 import { Movie } from './movie';
 import { MoviesResult } from './movies-result';
+import { API_URL, API_KEY } from './movie.constants';
 
 @Injectable()
 export class TmdbService {
 
   constructor(private http: Http) { }
   
-  /**
-   * TMDB API
-   */
-  private apiUrl = "//api.themoviedb.org/3/";
-  private apiKey = "802cd9bec58e75474a66bfa717fd1106";
-  private apiImg = "//image.tmdb.org/t/p/w500";
-  
-  getApiImg(): string {
-    return this.apiImg;
-  }
-  
   // Optional and Default Parameters
-  getMovies(sortBy?: string, page?: number, includeAdult?: string): Promise<MoviesResult> {
+  // sort_by, page, year, with_genres , year?: number, with_genres: string
+  getMovies(sortBy?: string, page?: number): Promise<MoviesResult> {
 		let pathDiscover = 'discover/movie';
 		
-    if ( sortBy ) {
+    if ( sortBy == null ) {
         sortBy = 'popularity.desc';
     }
-    if ( page ) {
+    if ( page == null ) {
         page = 1;
     }
-    if ( includeAdult ) {
-        includeAdult = 'false';
-    }
 		
-		const url  = `${this.apiUrl}${pathDiscover}?page=${page}&include_adult=${includeAdult}&api_key=${this.apiKey}`;
-		
+		const url  = `${API_URL}${pathDiscover}?sort_by=${sortBy}&page=${page}&api_key=${API_KEY}`;
 		return this.http.get(url)
 		       .toPromise()
 		       .then(response => response.json() as MoviesResult)
@@ -55,7 +42,7 @@ export class TmdbService {
     let pathMovie = 'movie';
     // var uri = serviceBase.url + '/movie/' + movie + '?api_key=' + serviceBase.apiKey +
     //     '&append_to_response=alternative_titles,credits,releases,videos,similar,reviews,images';
-    const url = `${this.apiUrl}${pathMovie}/${movie_id}?api_key=${this.apiKey}`;
+    const url = `${API_URL}${pathMovie}/${movie_id}?api_key=${API_KEY}`;
     
     return this.http.get(url)
            .toPromise()
