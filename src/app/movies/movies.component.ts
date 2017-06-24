@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Movie } from '../movie';
 import { MoviesResult } from '../movies-result';
 
 import { TmdbService } from '../tmdb.service';
-import { API_IMG } from '../movie.constants';
 
 @Component({
   selector: 'app-movies',
@@ -14,8 +13,7 @@ import { API_IMG } from '../movie.constants';
 export class MoviesComponent implements OnInit {
   result: MoviesResult;
   movies: Movie[];
-  currentPage: number;
-  apiImg = API_IMG;
+  @Input() currentPage;
   
   constructor(
     private apiService: TmdbService) { }
@@ -25,20 +23,18 @@ export class MoviesComponent implements OnInit {
   }
   
   getMovies(): void {
-    
-    console.log("VALOR DE moviesComponent", JSON.parse(localStorage.getItem("moviesComponent")));
     this.apiService.getMovies(undefined, this.currentPage).then(data => 
-      {this.result = data; this.movies = data.results; console.log(this.result);});
+      {this.result = data; this.movies = data.results; });
   }
   
   changePage(page: number): void {
-    localStorage.setItem("moviesComponent", JSON.stringify({page: page}));
+    console.log("the page has changed to", page);
     this.currentPage = page;
     this.getMovies();
   }
   
-  changeSort(sort: number): void {
-    console.log("EL NUEVO ORDEN ES", sort);
-  }
+  // changeSort(sort: number): void {
+  //   console.log("EL NUEVO ORDEN ES", sort);
+  // }
 
 }

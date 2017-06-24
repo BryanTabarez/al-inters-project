@@ -9,13 +9,15 @@ import { TmdbService } from './tmdb.service';
 
 import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    MovieCardComponent
   ],
   imports: [
     BrowserModule,

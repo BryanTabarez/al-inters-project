@@ -1,40 +1,27 @@
-<!--<h2>MOVIES</h2>-->
+<h2>Explore movies</h2>
 
 <div class="row">
-  <div *ngFor="let movie of movies" class="col-3">
+  
+  <div *ngFor="let movie of movies" class="col-3" id="movies">
       
     <!--movie-tile-->
-    <a href="#" title="{{movie.title}}">
-      <img class="img-thumbnail" src="{{apiImg}}/{{movie.poster_path}}"/>
-    </a>
-    
-  	<div class="caption">
-      <h5>{{ movie.title }}</h5>
-    </div>
-    <!--info-->
-  	<div class="row">
-	    <div class="col" style="color:#f39c12;">
-          {{movie.vote_average}}
-          <ngb-rating rate="{{movie.vote_average/2}}" readonly="true" max="5"></ngb-rating>
-      </div>
-      <div class="col">
-          <span class="badge badge-info">{{ movie.release_date | date:"yyyy" }}</span>
-      </div>
-    </div>
+    <movie-card [movie]="movie"></movie-card>
     <!-- END movie-tile-->
     
   </div>
   
 </div>
 
-<br>
+<hr>
 
-<div align="center">
-<ngb-pagination
-  (pageChange)="changePage($event)"
-  page="{{result?.page}}"
-  maxSize="5"
-  collectionSize="{{result?.total_results}}"
-  pageSize="20">
-</ngb-pagination>
+<div class="row">
+  <ngb-pagination
+    (pageChange) = "changePage($event)"
+    [page]="3"
+    [maxSize]="5"
+    [collectionSize]="result?.total_results"
+    [pageSize]="20"
+    [boundaryLinks]="true">
+  </ngb-pagination>
+  <pre>currentPage: {{currentPage}}, collectionSize: {{result?.total_results}}</pre>
 </div>
