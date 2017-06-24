@@ -15,21 +15,18 @@
           <a class="nav-link" routerLink="/movies" routerLinkActive="active">MOVIES</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">TV SHOES</a>
+          <a class="nav-link" href="#">TV SHOWS</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">PEOPLE</a>
         </li>
       </ul>
     </div>
+        <input type="text" class="form-control" id="search-input" placeholder="Movies, TV shows, people..." autocomplete="off">
   </div>
 </nav>
-  
-<div class="container">
-  <div style="margin-top:7em; margin-bottom:2em;">
-    <h1>
-      Welcome to {{title}}!!
-    </h1>
-  </div>
+
+<div id="content-router" class="container">
+    <!--<h1 style="padding-bottom:0.7em;">{{title}}</h1>-->
   <router-outlet></router-outlet>
 </div>
