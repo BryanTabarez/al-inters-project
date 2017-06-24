@@ -1,0 +1,17 @@
+<a [routerLink]="['/movie', movie.id]" title="{{movie.title}}">
+  <img class="img-thumbnail" src="{{apiImg}}/{{movie.poster_path}}"/>
+</a>
+
+  <div class="caption">
+  <h5>{{ movie.title }}</h5>
+</div>
+<!--info-->
+  <div class="row">
+    <div id="rating" class="col-8 rating">
+      {{movie.vote_average}}
+      <ngb-rating rate="{{movie.vote_average/2}}" readonly="true" max="5"></ngb-rating>
+  </div>
+  <div class="col-4">
+      <span class="badge badge-info">{{ movie.release_date | date:"yyyy" }}</span>
+  </div>
+</div>
