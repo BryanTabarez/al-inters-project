@@ -1,5 +1,8 @@
 <a [routerLink]="['/movie', movie.id]" title="{{movie.title}}">
-  <img class="img-thumbnail" src="{{apiImg}}/{{movie.poster_path}}"/>
+  <div *ngIf="movie.poster_path; else elseBlock">
+    <img class="img-thumbnail" src="{{apiImg}}/{{movie.poster_path}}"/>
+  </div>
+  <ng-template #elseBlock><img class="img-thumbnail" src="/assets/images/placeholder.png"/>w</ng-template>
 </a>
 
   <div class="caption">
