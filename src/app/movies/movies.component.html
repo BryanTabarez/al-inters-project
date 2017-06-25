@@ -1,12 +1,15 @@
 <h2>Explore movies</h2>
 <!--SORT dropdown-->
-<div class="row" style="margin:2em;">
-  <div class="col">
-    <div ngbDropdown class="d-inline-block float-right">
-      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{selectedSort.name}}</button>
-      <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
-          <div *ngFor="let sort of sorting_option">
-        <button class="dropdown-item" (click)="changeSort(sort)">{{sort.name}}</button>
+<div class="row float-rigth" style="margin:2em;">
+  <div class="col-4 float-rigth">
+    <p class="row">Order by </p>
+    <div class="row">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{selectedSort.name}}</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+            <div *ngFor="let sort of sorting_option">
+          <button class="dropdown-item" (click)="changeSort(sort)">{{sort.name}}</button>
+          </div>
         </div>
       </div>
     </div>

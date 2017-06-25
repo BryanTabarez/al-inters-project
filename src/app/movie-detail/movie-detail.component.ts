@@ -1,6 +1,7 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Movie } from '../movie';
 import { TmdbService } from '../tmdb.service';
@@ -17,16 +18,17 @@ export class MovieDetailComponent implements OnInit {
 
   constructor(
     private apiService: TmdbService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
-    
     this.route.params
       .switchMap((params: Params) => this.apiService.getMovie(+params['id']))
       .subscribe(movie => this.movie = movie);
-    
   }
 
-  
+  goBack(): void {
+    this.location.back();
+  }
 }

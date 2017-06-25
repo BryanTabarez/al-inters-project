@@ -1,3 +1,9 @@
+<!--<h2>Movie detail</h2>-->
+<div class="row" style="margin-bottom:2em;">
+  <button  class="btn btn-secondary" (click)="goBack()">
+    <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Back
+  </button>
+</div>
 <div *ngIf="movie">
   <h3>{{movie.title}} ({{movie.release_date | date:'yyyy'}}) </h3>
   <div class="row">
