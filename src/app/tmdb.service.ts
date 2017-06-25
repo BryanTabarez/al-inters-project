@@ -38,7 +38,7 @@ export class TmdbService {
     return Promise.reject(error.message || error);
   }
 
-  getMovie(movie_id: number): Promise<any> {
+  getMovie(movie_id: number): Promise<Movie> {
     const pathMovie = 'movie';
     // var uri = serviceBase.url + '/movie/' + movie + '?api_key=' + serviceBase.apiKey +
     //     '&append_to_response=alternative_titles,credits,releases,videos,similar,reviews,images';
@@ -50,13 +50,14 @@ export class TmdbService {
            .catch(this.handleError);
   }
 
+  // TODO: define Video class
   getMovieVideos(movie_id: number): Promise<any> {
     const videoUrl = '/videos';
     const url = `${API_URL}movie/${movie_id}${videoUrl}?api_key=${API_KEY}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => {return response.json().results;
-      })
+      .then(response => response.json().results)
+      .catch(this.handleError);
   }
 
 }

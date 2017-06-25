@@ -13,13 +13,15 @@
       </a>
     </div>
     <div class="col-6" style="margin-top:1em;">
-      
       <dl class="row">
         <dt class="col-4">Original title:</dt>
         <dd class="col-8">{{movie.title}}</dd>
         
         <dt class="col-4">Release date:</dt>
         <dd class="col-8">{{movie.release_date | date }}</dd>
+
+        <dt class="col-4">Runtime:</dt>
+        <dd class="col-8">{{movie.runtime}} minutes</dd>
         
         <dt class="col-4">Genres:</dt>
         <dd class="col-8" >
@@ -44,9 +46,12 @@
     </div>
     <!--<img style="width:30%" src="{{apiImg}}/{{movie.backdrop_path}}"/>-->
   </div>
-  
-    
-  
-  <!--<button (click)="goBack()">Back</button>-->
 </div>
-<!--<button (click)="save()">Save</button>-->
+<div class="row" style="margin-top:1em;">
+  <button class="btn btn-outline-primary" type="button" (click)="getTrailerUrl(movie.id); modalTrailer.show()">Play trailer</button>
+</div>
+<app-modal #modalTrailer>
+  <div class="app-modal-body" *ngIf="videoUrl">
+      <iframe class="e2e-iframe-trusted-src" [src]="videoUrl" frameborder="0"></iframe>
+  </div>
+</app-modal>
