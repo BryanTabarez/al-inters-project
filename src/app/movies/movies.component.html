@@ -1,4 +1,18 @@
 <h2>Explore movies</h2>
+<!--SORT dropdown-->
+<div class="row" style="margin:2em;">
+  <div class="col">
+    <div ngbDropdown class="d-inline-block float-right">
+      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{selectedSort.name}}</button>
+      <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+          <div *ngFor="let sort of sorting_option">
+        <button class="dropdown-item" (click)="changeSort(sort)">{{sort.name}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end SORT dropdown-->
 <div class="row">
   <div *ngFor="let movie of movies" class="col-3" id="movies">
     <movie-card [movie]="movie"></movie-card>
@@ -6,7 +20,7 @@
 </div>
 <hr>
 <div class="row">
-  <ngb-pagination
+  <ngb-pagination class="mx-auto"
     (pageChange) = "changePage($event)"
     [maxSize]="5"
     [collectionSize]="result?.total_results"
