@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Movie } from '../movie';
 import { MoviesResult } from '../movies-result';
@@ -13,26 +13,26 @@ import { TmdbService } from '../tmdb.service';
 export class MoviesComponent implements OnInit {
   result: MoviesResult;
   movies: Movie[];
-  @Input() currentPage;
-  
+  currentPage: number;
+
   constructor(
     private apiService: TmdbService) { }
-  
+
   ngOnInit(): void {
     this.getMovies();
   }
-  
+
   getMovies(): void {
-    this.apiService.getMovies(undefined, this.currentPage).then(data => 
-      {this.result = data; this.movies = data.results; });
+    // this.currentPage = JSON.parse(localStorage.getItem('currentPage')).page;
+    this.apiService.getMovies(undefined, this.currentPage).then(data => {this.result = data; this.movies = data.results; });
   }
-  
-  changePage(page: number): void {
-    console.log("the page has changed to", page);
+
+  changePage(page: any): void {
+    // localStorage.setItem('currentPage', JSON.stringify({'page': page}));
     this.currentPage = page;
     this.getMovies();
   }
-  
+
   // changeSort(sort: number): void {
   //   console.log("EL NUEVO ORDEN ES", sort);
   // }
