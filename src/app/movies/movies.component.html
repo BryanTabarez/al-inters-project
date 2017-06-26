@@ -16,18 +16,17 @@
   </div>
 </div>
 <!--end SORT dropdown-->
+<app-pagination (onChangePage)="changePage($event)"
+  [page]="result?.page" [totalPages]="result?.total_pages"
+  [totalResults]="result?.total_results">
+</app-pagination>
 <div class="row">
-  <div *ngFor="let movie of movies" class="col-3" id="movies">
+  <div *ngFor="let movie of movies" class="col-2" id="movies">
     <movie-card [movie]="movie"></movie-card>
   </div>
 </div>
 <hr>
-<div class="row">
-  <ngb-pagination class="mx-auto"
-    (pageChange) = "changePage($event)"
-    [maxSize]="5"
-    [collectionSize]="result?.total_results"
-    [pageSize]="20"
-    [boundaryLinks]="true">
-  </ngb-pagination>
-</div>
+<app-pagination (onChangePage)="changePage($event)"
+  [page]="result?.page" [totalPages]="result?.total_pages"
+  [totalResults]="result?.total_results">
+</app-pagination>
