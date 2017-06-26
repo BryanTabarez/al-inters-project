@@ -16,18 +16,25 @@ export class TmdbService {
 
   // Optional and Default Parameters
   // sort_by, page, year, with_genres , year?: number, with_genres: string
-  getMovies(sortBy?: string, page?: number): Promise<MoviesResult> {
-    const pathDiscover = 'discover/movie';
-
+  getMovies(sortBy?: string, page?: number, includeAdult?: boolean): Promise<MoviesResult> {
     if ( sortBy == null ) {
         sortBy = 'popularity.desc';
     }
     if ( page == null ) {
         page = 1;
     }
-
-    const url  = `${API_URL}${pathDiscover}?sort_by=${sortBy}&page=${page}&api_key=${API_KEY}`;
-    return this.http.get(url)
+    if ( includeAdult == null) {
+      includeAdult = false;
+    }
+    const pathDiscover = 'discover/movie';
+    const params: string = [
+      `api_key=${API_KEY}`,
+      `page=${page}`,
+      `sort_by=${sortBy}`,
+      `include_adult=${includeAdult}`
+    ].join('&');
+    const queryUrl = `${API_URL}${pathDiscover}?${params}`;
+    return this.http.get(queryUrl)
           .toPromise()
           .then(response => response.json() as MoviesResult)
           .catch(this.handleError);
@@ -61,7 +68,6 @@ export class TmdbService {
 
   getSimilarMovies(movie_id: number): Promise<MoviesResult> {
     const url = `${API_URL}movie/${movie_id}/similar?api_key=${API_KEY}`;
-    console.log('similar_url', url);
     return this.http.get(url)
            .toPromise()
            .then(response => response.json() as MoviesResult)
@@ -70,7 +76,6 @@ export class TmdbService {
 
   getRecommendationsMovies(movie_id: number): Promise<MoviesResult> {
     const url = `${API_URL}movie/${movie_id}/recommendations?api_key=${API_KEY}`;
-    console.log('similar_url', url);
     return this.http.get(url)
            .toPromise()
            .then(response => response.json() as MoviesResult)
