@@ -1,0 +1,21 @@
+.caption:hover {
+  padding: 0px !important;
+  /*position: ;*/
+  margin-bottom: 2%;
+}
+.caption h6 {
+    margin: 0;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7);
+}
+img {
+    width: 100%
+}
+.card {
+    margin-bottom:1em;
+}

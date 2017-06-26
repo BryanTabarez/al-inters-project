@@ -1,0 +1,13 @@
+<div class="card card-inverse">
+  <div *ngIf="movie.poster_path; else elseBlock">
+      <img class="card-img" src="{{apiImg}}/{{movie.backdrop_path}}"/>
+  </div>
+  <ng-template #elseBlock><img class="card-img" src="/assets/images/placeholder.png"/>w</ng-template>
+  <div class="card-img-overlay">
+    <div class="caption">
+      <a [routerLink]="['/movie', movie.id]" title="{{movie.title}}">
+        <h6 class="card-title">{{movie.title}}</h6>
+      </a>
+    </div>
+  </div>
+</div>
