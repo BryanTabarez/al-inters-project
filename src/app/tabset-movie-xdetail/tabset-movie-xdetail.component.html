@@ -1,7 +1,7 @@
 <ngb-tabset class="nav-fill" *ngIf="movie">
   <ngb-tab title="Recommendations" id="recommendations">
     <ng-template ngbTabContent>
-        <div class="row" style="margin-top:1em;">
+        <div class="row" *ngIf="recommendations?.length > 0; else emptyTab" style="margin-top:1em;">
           <div *ngFor="let movie_i of recommendations" class="col-3">
             <app-movie-tile [movie]="movie_i"></app-movie-tile>
         </div>
@@ -42,5 +42,5 @@
     <div class="container">
       <p class="lead text-center">There is nothing in this section.</p>
     </div>
-  </div>  
+  </div>
 </ng-template>
