@@ -46,18 +46,35 @@ export class TmdbService {
 
     return this.http.get(url)
            .toPromise()
-           .then(response => {console.log('full movie', response.json()); return response.json() as Movie})
+           .then(response => response.json() as Movie)
            .catch(this.handleError);
   }
 
   // TODO: define Video class
   getMovieVideos(movie_id: number): Promise<any> {
-    const videoUrl = '/videos';
-    const url = `${API_URL}movie/${movie_id}${videoUrl}?api_key=${API_KEY}`;
+    const url = `${API_URL}movie/${movie_id}/videos?api_key=${API_KEY}`;
     return this.http.get(url)
       .toPromise()
       .then(response => response.json().results)
       .catch(this.handleError);
+  }
+
+  getSimilarMovies(movie_id: number): Promise<MoviesResult> {
+    const url = `${API_URL}movie/${movie_id}/similar?api_key=${API_KEY}`;
+    console.log('similar_url', url);
+    return this.http.get(url)
+           .toPromise()
+           .then(response => response.json() as MoviesResult)
+           .catch(this.handleError);
+  }
+
+  getRecommendationsMovies(movie_id: number): Promise<MoviesResult> {
+    const url = `${API_URL}movie/${movie_id}/recommendations?api_key=${API_KEY}`;
+    console.log('similar_url', url);
+    return this.http.get(url)
+           .toPromise()
+           .then(response => response.json() as MoviesResult)
+           .catch(this.handleError);
   }
 
 }
