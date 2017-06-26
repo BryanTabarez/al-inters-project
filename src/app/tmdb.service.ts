@@ -82,4 +82,13 @@ export class TmdbService {
            .catch(this.handleError);
   }
 
+  getCreditsMovie(movie_id: number): Promise<any> {
+    const credits = '/credits';
+    const url = `${API_URL}movie/${movie_id}${credits}?api_key=${API_KEY}`;
+    return this.http.get(url)
+           .toPromise()
+           .then(response => response.json())
+           .catch(this.handleError);
+  }
+
 }

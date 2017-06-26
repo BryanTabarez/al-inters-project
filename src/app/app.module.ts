@@ -14,7 +14,7 @@ import { ModalComponent } from './_modal/modal.component';
 import { TabsetMovieXdetailComponent } from './tabset-movie-xdetail/tabset-movie-xdetail.component';
 import { MovieTileComponent } from './movie-tile/movie-tile.component';
 import { PaginationComponent } from './_pagination/pagination.component';
-
+import { PersonCardComponent } from './person-card/person-card.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +26,7 @@ import { PaginationComponent } from './_pagination/pagination.component';
     TabsetMovieXdetailComponent,
     MovieTileComponent,
     PaginationComponent,
+    PersonCardComponent,
   ],
   imports: [
     BrowserModule,
