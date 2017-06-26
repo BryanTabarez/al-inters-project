@@ -1,28 +1,46 @@
 <ngb-tabset class="nav-fill" *ngIf="movie">
-  <ngb-tab title="Similar Movies" id="similar_movies">
+  <ngb-tab title="Recommendations" id="recommendations">
     <ng-template ngbTabContent>
-      <div class="row" style="margin-top:1em;">
-        <div *ngFor="let movie_i of similar_movies" class="col-3" id="movies">
-          <app-movie-tile [movie]="movie_i"></app-movie-tile>
+        <div class="row" style="margin-top:1em;">
+          <div *ngFor="let movie_i of recommendations" class="col-3">
+            <app-movie-tile [movie]="movie_i"></app-movie-tile>
         </div>
       </div>
     </ng-template>
   </ngb-tab>
-  <ngb-tab title="Recommendations" id="recommendations">
+  <ngb-tab title="Cast" id="cast">
     <ng-template ngbTabContent>
-      <div class="row" style="margin-top:1em;">
-        <div *ngFor="let movie_i of recommendations" class="col-3" id="movies">
-          <app-movie-tile [movie]="movie_i"></app-movie-tile>
+      <div class="row" *ngIf="cast?.length > 0; else emptyTab" style="margin-top:1em;">
+        <div *ngFor="let person of cast" class="col-3">
+          <!--<app-movie-tile [movie]="movie_i"></app-movie-tile>-->
         </div>
       </div>
     </ng-template>
   </ngb-tab>
   <ngb-tab title="Crew" id="crew">
     <ng-template ngbTabContent>
+      <div class="row" *ngIf="crew?.length > 0; else emptyTab" style="margin-top:1em;">
+        <div *ngFor="let person of crew" class="col-3">
+          <!--<app-movie-tile [movie]="movie_i"></app-movie-tile>-->
+        </div>
+      </div>
     </ng-template>
   </ngb-tab>
-  <ngb-tab title="Cast" id="cast">
+  <ngb-tab title="Similar Movies" id="similar_movies">
     <ng-template ngbTabContent>
+      <div class="row" *ngIf="similar_movies?.length > 0; else emptyTab" style="margin-top:1em;">
+        <div *ngFor="let movie_i of similar_movies" class="col-3">
+          <app-movie-tile [movie]="movie_i"></app-movie-tile>
+        </div>
+      </div>
     </ng-template>
   </ngb-tab>
 </ngb-tabset>
+
+<ng-template #emptyTab>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <p class="lead text-center">There is nothing in this section.</p>
+    </div>
+  </div>  
+</ng-template>
