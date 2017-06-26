@@ -3,6 +3,7 @@ import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { TmdbService } from '../tmdb.service';
 import { Movie } from '../movie';
+import { Person } from '../person';
 import { ModalComponent } from '../_modal/modal.component';
 
 @Component({
@@ -14,6 +15,8 @@ export class TabsetMovieXdetailComponent implements OnInit, OnChanges {
   @Input() movie: Movie;
   similar_movies: Movie[];
   recommendations: Movie[];
+  cast: Person[];
+  crew: Person[];
 
   constructor(
     private apiService: TmdbService
@@ -24,21 +27,28 @@ export class TabsetMovieXdetailComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: any) {
     if (changes.movie.currentValue !== undefined) {
-      this.getSimilarMovies();
-      this.getRecommendations();
+      this.updateSimilarMovies();
+      this.updateRecommendations();
+      this.updateCredits();
     }
   }
 
-  private getSimilarMovies() {
-    console.log('SIMILAR MOVIES');
+  private updateSimilarMovies() {
     this.apiService.getSimilarMovies(this.movie.id)
       .then(data => this.similar_movies = data.results)
   }
 
-  private getRecommendations() {
-    console.log('RECOMMENDATIONS');
+  private updateRecommendations() {
     this.apiService.getRecommendationsMovies(this.movie.id)
       .then(data => this.recommendations = data.results)
+  }
+
+  private updateCredits() {
+    this.apiService.getCreditsMovie(this.movie.id)
+      .then(data => {
+        this.crew = data.crew;
+        this.cast = data.cast
+      })
   }
 
 }

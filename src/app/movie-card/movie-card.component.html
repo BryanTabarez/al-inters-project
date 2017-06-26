@@ -2,7 +2,7 @@
   <div *ngIf="movie.poster_path; else elseBlock">
     <img class="card-img-top" src="{{apiImg}}/{{movie.poster_path}}"/>
   </div>
-  <ng-template #elseBlock><img class="img-thumbnail" src="/assets/images/placeholder.png"/>w</ng-template>
+  <ng-template #elseBlock><img class="img-thumbnail" src="/assets/images/placeholder.png"/></ng-template>
 
   <div class="caption">
     <h5 ngbPopover="{{movie.overview}}"
