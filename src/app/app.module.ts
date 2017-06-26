@@ -11,6 +11,9 @@ import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { ModalComponent } from './_modal/modal.component';
+import { TabsetMovieXdetailComponent } from './tabset-movie-xdetail/tabset-movie-xdetail.component';
+import { MovieTileComponent } from './movie-tile/movie-tile.component';
+import { PaginationComponent } from './_pagination/pagination.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { ModalComponent } from './_modal/modal.component';
     MoviesComponent,
     MovieDetailComponent,
     MovieCardComponent,
-    ModalComponent
+    ModalComponent,
+    TabsetMovieXdetailComponent,
+    MovieTileComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
