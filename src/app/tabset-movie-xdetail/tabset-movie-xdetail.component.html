@@ -2,7 +2,7 @@
   <ngb-tab title="Recommendations" id="recommendations">
     <ng-template ngbTabContent>
         <div class="row" *ngIf="recommendations?.length > 0; else emptyTab" style="margin-top:1em;">
-          <div *ngFor="let movie_i of recommendations" class="col-3">
+          <div *ngFor="let movie_i of recommendations | slice:0:12" class="col-3">
             <app-movie-tile [movie]="movie_i"></app-movie-tile>
         </div>
       </div>
@@ -11,8 +11,8 @@
   <ngb-tab title="Cast" id="cast">
     <ng-template ngbTabContent>
       <div class="row" *ngIf="cast?.length > 0; else emptyTab" style="margin-top:1em;">
-        <div *ngFor="let person of cast" class="col-3">
-          <!--<app-movie-tile [movie]="movie_i"></app-movie-tile>-->
+        <div *ngFor="let person of cast | slice:0:12" class="col-2">
+          <app-person-card [person]="person"></app-person-card>
         </div>
       </div>
     </ng-template>
@@ -20,8 +20,8 @@
   <ngb-tab title="Crew" id="crew">
     <ng-template ngbTabContent>
       <div class="row" *ngIf="crew?.length > 0; else emptyTab" style="margin-top:1em;">
-        <div *ngFor="let person of crew" class="col-3">
-          <!--<app-movie-tile [movie]="movie_i"></app-movie-tile>-->
+        <div *ngFor="let person of crew | slice:0:12" class="col-2">
+          <app-person-card [person]="person"></app-person-card>
         </div>
       </div>
     </ng-template>
@@ -29,7 +29,7 @@
   <ngb-tab title="Similar Movies" id="similar_movies">
     <ng-template ngbTabContent>
       <div class="row" *ngIf="similar_movies?.length > 0; else emptyTab" style="margin-top:1em;">
-        <div *ngFor="let movie_i of similar_movies" class="col-3">
+        <div *ngFor="let movie_i of similar_movies | slice:0:12" class="col-3">
           <app-movie-tile [movie]="movie_i"></app-movie-tile>
         </div>
       </div>
