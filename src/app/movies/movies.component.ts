@@ -21,24 +21,37 @@ export class MoviesComponent implements OnInit {
     private apiService: TmdbService) { }
 
   ngOnInit(): void {
+    let filters = JSON.parse(localStorage.getItem('currentFilters'));
+    if (filters !== null) {
+      this.currentPage = filters['page'];
+      this.selectedSort = filters['sort'];
+    } else {
+      filters = {'page': 1, 'sort': this.sorting_option[0]};
+      localStorage.setItem('currentFilters', JSON.stringify(filters));
+    }
     this.getMovies();
   }
 
   getMovies(): void {
-    // this.currentPage = JSON.parse(localStorage.getItem('currentPage')).page;
     this.apiService.getMovies(this.selectedSort.id, this.currentPage).then(data => {this.result = data; this.movies = data.results; });
   }
 
   changePage(page: any): void {
-    // localStorage.setItem('currentPage', JSON.stringify({'page': page}));
+    this.updateFilter('page', page);
     this.currentPage = page;
     this.getMovies();
   }
 
   changeSort(sort: any): void {
-    console.log("EL NUEVO ORDEN ES", sort);
+    this.updateFilter('sort', sort);
     this.selectedSort = sort;
     this.getMovies();
+  }
+
+  private updateFilter(key: string, value: any) {
+    let filters = JSON.parse(localStorage.getItem('currentFilters'));
+    filters[key] = value;
+    localStorage.setItem('currentFilters', JSON.stringify(filters));
   }
 
 }
