@@ -1,6 +1,6 @@
 <div class="row" *ngIf="page">
   <div class="col-6">
-    Currently on page: {{page | number}} of {{totalPages | number}} ({{totalResults | number}} results)
+    <p class="lead">Currently on page: <strong>{{page | number}}</strong> of {{totalPages | number}} <small class="text-muted">({{totalResults | number}} results)</small></p>
   </div>
   <div class="col-6">
     <nav aria-label="Page navigation">
