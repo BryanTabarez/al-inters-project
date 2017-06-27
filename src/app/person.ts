@@ -6,7 +6,7 @@ export class Person {
     deathday: string;
     gender: number;
     homepage: string;
-    id: string;
+    id: number;
     imdb_id: string;
     name: string;
     place_of_birth: string;

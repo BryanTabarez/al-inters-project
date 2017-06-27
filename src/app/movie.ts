@@ -16,4 +16,5 @@ export class Movie {
     title: string;
     video: boolean;
     vote_average: number;
+    backdrop_path: string;
 }
