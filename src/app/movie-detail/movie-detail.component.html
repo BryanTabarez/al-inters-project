@@ -8,7 +8,9 @@
   <div class="row">
     <div class="col-3">
       <a [routerLink]="['/movie', movie.id]" title="{{movie.title}}">
-        <img style="width:100%" src="{{apiImg}}/{{movie.poster_path}}"/>
+        <div *ngIf="movie.poster_path; else noPoster">
+          <img class="card-img-top" style="width:100%" src="{{apiImg}}/{{movie.poster_path}}"/>
+        </div>
       </a>
     </div>
     <div class="col-9" style="margin-top:1em;">
@@ -55,3 +57,7 @@
 <div class="row" style="margin-top:1em;">
   <app-tabset-movie-xdetail [movie]="movie"></app-tabset-movie-xdetail>
 </div>
+<ng-template #noPoster>
+  <img class="card-img-top"
+    src="https://user-images.githubusercontent.com/9521285/27590125-435301ca-5b13-11e7-999e-ce28aab045a1.png"/>
+</ng-template>

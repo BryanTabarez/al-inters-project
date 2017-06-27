@@ -1,8 +1,11 @@
 <a [routerLink]="['/movie', movie.id]" title="{{movie.title}}">
-  <div *ngIf="movie.poster_path; else elseBlock">
+  <div *ngIf="movie.poster_path; else noPoster">
     <img class="card-img-top" src="{{apiImg}}/{{movie.poster_path}}"/>
   </div>
-  <ng-template #elseBlock><img class="card-img-top" src="/assets/images/placeholder.png"/></ng-template>
+  <ng-template #noPoster>
+    <img class="card-img-top"
+      src="https://user-images.githubusercontent.com/9521285/27590125-435301ca-5b13-11e7-999e-ce28aab045a1.png"/>
+  </ng-template>
 
   <div class="caption">
     <h5 ngbPopover="{{movie.overview}}"
