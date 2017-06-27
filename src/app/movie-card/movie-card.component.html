@@ -2,7 +2,7 @@
   <div *ngIf="movie.poster_path; else elseBlock">
     <img class="card-img-top" src="{{apiImg}}/{{movie.poster_path}}"/>
   </div>
-  <ng-template #elseBlock><img class="img-thumbnail" src="/assets/images/placeholder.png"/></ng-template>
+  <ng-template #elseBlock><img class="card-img-top" src="/assets/images/placeholder.png"/></ng-template>
 
   <div class="caption">
     <h5 ngbPopover="{{movie.overview}}"
@@ -12,7 +12,7 @@
 </a>
 <!--info-->
   <div class="row">
-    <div id="rating" class="col-8 rating">
+    <div id="rating" class="col-6 rating">
       {{movie.vote_average}}
       <ngb-rating rate="{{movie.vote_average/2}}" readonly="true" max="5"></ngb-rating>
   </div>
