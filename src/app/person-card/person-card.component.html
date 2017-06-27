@@ -23,7 +23,6 @@
   <div class="app-modal-body">
     <div class="modal-body">
       <div class="row">
-        <!--{{infoPerson?.biography}}-->
         <div class="col-6">
           <div *ngIf="infoPerson?.profile_path; else noPhoto">
             <img class="card-img-top" style="width:100%" src="{{apiImg}}/{{infoPerson?.profile_path}}"/>
@@ -39,9 +38,11 @@
             <dd class="col-8">{{infoPerson?.place_of_birth}}</dd>
             <dt class="col-4">Also Know As</dt>
             <dd class="col-8">{{infoPerson?.place_of_birth}}</dd>
-            <p>{{infoPerson?.biography | slice:0:500 }}
-              <a *ngIf="infoPerson?.biography.length > 500">...</a>
-            </p>
+            <div *ngIf="infoPerson?.biography"> 
+              <p>{{infoPerson?.biography | slice:0:500 }}
+                  <a *ngIf="infoPerson?.biography.length > 500">...</a>
+              </p>
+            </div>
           </dl>
         </div>
       </div>
