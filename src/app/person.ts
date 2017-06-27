@@ -12,4 +12,6 @@ export class Person {
     place_of_birth: string;
     popularity: number;
     profile_path: string | null;
+    character: string | null;
+    department: string | null;
 }
