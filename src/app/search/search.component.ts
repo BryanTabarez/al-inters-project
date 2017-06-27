@@ -26,7 +26,8 @@ export class SearchComponent implements OnInit {
   apiImg = API_IMG;
 
   constructor(
-    private searchService: TmdbSearchService
+    private searchService: TmdbSearchService,
+    private router: Router
   ) { }
 
   // Push a search term into the observable stream.
@@ -46,6 +47,14 @@ export class SearchComponent implements OnInit {
         console.log(error);
         return Observable.of<any[]>([]);
       });
+  }
+
+  gotoDetail(result: any): void {
+    if ( result.media_type === 'movie' ) {
+      const link = ['/movie', result.id];
+      this.router.navigate(link);
+    }
+    this.searchTerms.next('');
   }
 
 }
