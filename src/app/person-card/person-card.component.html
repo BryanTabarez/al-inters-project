@@ -1,8 +1,50 @@
-<div *ngIf="person.profile_path; else elseBlock">
-  <img class="card-img-top" style="width:100%" src="{{apiImg}}/{{person.profile_path}}"/>
-</div>
-<ng-template #elseBlock><img class="img-thumbnail" src="/assets/images/placeholder.png"/></ng-template>
-<strong>{{person.name}}</strong><br>
+<a href="javascript:void(0)" (click)="getInfoPerson(person.id); modalPerson.show()">
+  <div *ngIf="person.profile_path; else noPhoto">
+    <img class="card-img-top" style="width:100%" src="{{apiImg}}/{{person.profile_path}}"/>
+  </div>
+  <strong>{{person.name}}</strong><br>
+</a>
 <p>
   {{person.character}}{{person.department}}
 </p>
+
+<!--no photo-->
+<ng-template #noPhoto><img class="img-thumbnail"
+  src="http://agroparty.kr.ua/wp-content/uploads/2015/04/no-profile-img-200x300.gif"/>
+</ng-template>
+
+<!--modalPerson-->
+<app-modal #modalPerson>
+  <div class="app-modal-header">
+    <div class="modal-header">
+      {{infoPerson?.name}}
+    </div>
+  </div>
+  <div class="app-modal-body">
+    <div class="modal-body">
+      <div class="row">
+        <!--{{infoPerson?.biography}}-->
+        <div class="col-6">
+          <div *ngIf="infoPerson?.profile_path; else noPhoto">
+            <img class="card-img-top" style="width:100%" src="{{apiImg}}/{{infoPerson?.profile_path}}"/>
+          </div>
+        </div>
+        <div class="col-6">
+          <dl class="row">
+            <dt class="col-4">Gender</dt>
+            <dd class="col-8">{{infoPerson?.gender == 1 ? 'Female' : 'Men'}}</dd>
+            <dt class="col-4">Birthday</dt>
+            <dd class="col-8">{{infoPerson?.birthday}}</dd>
+            <dt class="col-4">Place of birth</dt>
+            <dd class="col-8">{{infoPerson?.place_of_birth}}</dd>
+            <dt class="col-4">Also Know As</dt>
+            <dd class="col-8">{{infoPerson?.place_of_birth}}</dd>
+            <p>{{infoPerson?.biography | slice:0:500 }}
+              <a *ngIf="infoPerson?.biography.length > 500">...</a>
+            </p>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>

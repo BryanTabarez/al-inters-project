@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 
 import { Movie } from './movie';
+import { Person } from './person';
 import { MoviesResult } from './movies-result';
 import { API_URL, API_KEY } from './movie.constants';
 
@@ -85,6 +86,15 @@ export class TmdbService {
   getCreditsMovie(movie_id: number): Promise<any> {
     const credits = '/credits';
     const url = `${API_URL}movie/${movie_id}${credits}?api_key=${API_KEY}`;
+    return this.http.get(url)
+           .toPromise()
+           .then(response => response.json())
+           .catch(this.handleError);
+  }
+
+  // /person/{person_id}
+  getPersonDetails(person_id: number): Promise<Person> {
+    const url = `${API_URL}person/${person_id}?api_key=${API_KEY}`;
     return this.http.get(url)
            .toPromise()
            .then(response => response.json())
