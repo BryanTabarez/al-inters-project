@@ -1,0 +1,41 @@
+<input #searchBox  type="text" class="" id="search-input" placeholder="Movies, persons, tv shows" (keyup)="search(searchBox.value)">
+<div class="container search-container">
+  <div *ngFor="let result of results | async ">  <!--(click)="gotoDetail(result)"-->
+    <div class="row justify-content-center" id="row-result" >
+        <!--Image and text-->
+        <div class="col-4">
+          <div class="row">
+            <div class="col-6">
+              <div *ngIf="result.media_type == 'movie' || result.media_type == 'tv'">
+                <img *ngIf="result.poster_path; else noPoster" width="40%" src="{{apiImg}}{{result.poster_path}}">
+              </div>
+              <div *ngIf="result.media_type == 'person'">
+                <img *ngIf="result.profile_path; else noPhoto" width="40%" src="{{apiImg}}{{result.profile_path}}">
+              </div>
+            </div>
+            <div class="col-6">
+              <p>{{result.title}}{{result.name}}<br><small>{{result.release_date}}</small></p>
+            </div>
+          </div>
+        </div>
+
+        <!--show badges by types-->
+        <div class="col-4 text-right">
+          <div class="type">
+            <span *ngIf="result.media_type == 'movie'" class="badge badge-primary">MOVIE</span>
+            <span *ngIf="result.media_type == 'person'" class="badge badge-success">PERSON</span>
+            <span *ngIf="result.media_type == 'tv'" class="badge badge-default">TV SHOW</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+<!--if movie or tv does not have poster-->
+<ng-template #noPoster>
+  <img width="40%" src="http://media.comicbook.com/files/img/default-movie.png">
+</ng-template>
+<ng-template #noPhoto>
+  <img width="40%" src="http://www.gpp-kavkaz.ru/images/no_avatar.jpg">
+</ng-template>
