@@ -46,10 +46,8 @@
   </div>
 </div>
 <div class="row" style="margin-top:1em;">
-  <div *ngIf="movie?.video">
-    <button class="btn btn-outline-primary mx-auto" type="button" (click)="getTrailerUrl(movie.id); modalTrailer.show()">
-      <i class="fa fa-play-circle" aria-hidden="true"></i> Play trailer</button>
-  </div>
+  <button class="btn btn-outline-primary mx-auto" type="button" (click)="getTrailerUrl(movie.id); modalTrailer.show()">
+    <i class="fa fa-play-circle" aria-hidden="true"></i> Play trailer</button>
 </div>
 <app-modal #modalTrailer>
   <div class="app-modal-body" *ngIf="videoUrl">
