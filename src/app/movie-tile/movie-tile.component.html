@@ -2,8 +2,7 @@
   <div *ngIf="movie.backdrop_path; else elseBlock">
       <img class="card-img" src="{{apiImg}}/{{movie.backdrop_path}}"/>
   </div>
-
-  <ng-template #elseBlock><img class="card-img" src="https://user-images.githubusercontent.com/9521285/27590291-d4f7ff0e-5b13-11e7-9166-12433d797df1.gif"/></ng-template>
+  <ng-template #elseBlock><img class="card-img" src="https://user-images.githubusercontent.com/9521285/27590054-069e6c88-5b13-11e7-9edb-79753a1f2670.jpg"/></ng-template>
   <div class="card-img-overlay">
     <div class="caption">
       <a [routerLink]="['/movie', movie.id]" title="{{movie.title}}">

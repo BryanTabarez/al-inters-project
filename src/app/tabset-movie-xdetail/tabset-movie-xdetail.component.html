@@ -1,18 +1,18 @@
 <ngb-tabset class="nav-fill" *ngIf="movie">
-  <ngb-tab title="Recommendations" id="recommendations">
-    <ng-template ngbTabContent>
-        <div class="row" *ngIf="recommendations?.length > 0; else emptyTab" style="margin-top:1em;">
-          <div *ngFor="let movie_i of recommendations | slice:0:12" class="col-3">
-            <app-movie-tile [movie]="movie_i"></app-movie-tile>
-        </div>
-      </div>
-    </ng-template>
-  </ngb-tab>
   <ngb-tab title="Cast" id="cast">
     <ng-template ngbTabContent>
       <div class="row" *ngIf="cast?.length > 0; else emptyTab" style="margin-top:1em;">
         <div *ngFor="let person of cast | slice:0:12" class="col-2">
           <app-person-card [person]="person"></app-person-card>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Recommendations" id="recommendations">
+    <ng-template ngbTabContent>
+        <div class="row" *ngIf="recommendations?.length > 0; else emptyTab" style="margin-top:1em;">
+          <div *ngFor="let movie_i of recommendations | slice:0:12" class="col-3">
+            <app-movie-tile [movie]="movie_i"></app-movie-tile>
         </div>
       </div>
     </ng-template>
