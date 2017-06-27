@@ -1,9 +1,7 @@
-<!--<a [routerLink]="['/movie', movie.id]" title="{{movie.title}}">-->
 <div *ngIf="person.profile_path; else elseBlock">
   <img class="card-img-top" style="width:100%" src="{{apiImg}}/{{person.profile_path}}"/>
 </div>
 <ng-template #elseBlock><img class="img-thumbnail" src="/assets/images/placeholder.png"/></ng-template>
-<!--</a>-->
 <strong>{{person.name}}</strong><br>
 <p>
   {{person.character}}{{person.department}}
