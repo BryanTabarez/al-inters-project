@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // third-party
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TmdbService } from './tmdb.service';
+import { TmdbSearchService } from './tmdb-search.service';
 
 import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
@@ -15,6 +16,7 @@ import { TabsetMovieXdetailComponent } from './tabset-movie-xdetail/tabset-movie
 import { MovieTileComponent } from './movie-tile/movie-tile.component';
 import { PaginationComponent } from './_pagination/pagination.component';
 import { PersonCardComponent } from './person-card/person-card.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { PersonCardComponent } from './person-card/person-card.component';
     MovieTileComponent,
     PaginationComponent,
     PersonCardComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { PersonCardComponent } from './person-card/person-card.component';
     NgbModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [TmdbService],
+  providers: [TmdbService, TmdbSearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
